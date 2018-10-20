@@ -1,0 +1,16 @@
+[package]
+name = "meepo"
+version = "0.1.0"
+authors = ["zhangsoledad <787953403@qq.com>"]
+license = "MIT"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { version = "0.15", features = ["full", "fold"] }
+quote = "0.6"
+proc-macro2 = { version = "0.4", features = ["nightly"] }
+
+[dev-dependencies]
+tiny-keccak = "1.4"
