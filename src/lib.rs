@@ -90,7 +90,11 @@ fn arg_idents(args: &[FnArg]) -> Vec<(Pat, Type)> {
     let mut idents = vec![];
     for arg in args {
         if let syn::FnArg::Captured(ref cap) = arg {
-            idents.push((cap.pat.clone(), cap.ty.clone()));
+            if let Pat::Ident(mut pid) = cap.pat.clone() {
+                pid.by_ref = None;
+                pid.mutability = None;
+                idents.push((Pat::Ident(pid), cap.ty.clone()));
+            }
         }
     }
     idents

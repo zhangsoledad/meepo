@@ -7,29 +7,28 @@ use std::{thread, time};
 fn main() {
     let now = time::Instant::now();
     let fab30 = factorial(30);
-    println!("fab20 elapsed {:?}", now.elapsed());
-    // assert_eq!(fab20, 2432902008176640000);
+    println!("fab30 {:?} elapsed {:?}", fab30, now.elapsed());
+
     let now = time::Instant::now();
     let fab30 = factorial(30);
-    println!("fab20 cached elapsed {:?}", now.elapsed());
+    println!("fab30 {:?} cached elapsed {:?}", fab30, now.elapsed());
 
     let now = time::Instant::now();
-    let _ = swl(100);
-    println!("swl excute elapsed {:?}", now.elapsed());
+    let s = swl(100);
+    println!("swl {:?} elapsed {:?}", s, now.elapsed());
 
     let now = time::Instant::now();
-    let _ = swl(100);
-    println!("swl cached elapsed {:?}", now.elapsed());
+    let s = swl(100);
+    println!("swl {:?} cached elapsed {:?}", s, now.elapsed());
 
 }
 
 #[meepo(maxsize = 100)]
-fn factorial(n: u128) -> u128 {
-    let mut ret = n;
+fn factorial(mut n: u128) -> u128 {
     let mut p = 1;
-    while ret > 1 {
-        p *= ret;
-        ret -= 1;
+    while n > 1 {
+        p *= n;
+        n -= 1;
     }
     p
 }
